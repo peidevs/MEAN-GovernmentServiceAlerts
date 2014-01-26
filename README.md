@@ -6,3 +6,11 @@ Winter coding project by peidevs. Purpose of the project is to learn the MEAN st
 
 The application allows users to sign up to recieve alerts based on various government services.
 
+##Prerequisites
+Make sure you have Node.js and Node Package Manager (npm) in a running state
+
+##Getting Started
+Download the required dependencies for the project. (We do not store them in the repo)
+> npm install
+
+
