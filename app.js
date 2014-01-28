@@ -12,3 +12,6 @@ var express = require('express')
 
 var app = express();
 
+http.createServer(app).listen(config.port, function(){
+  console.log('Express server listening on port ' + config.port);
+});
