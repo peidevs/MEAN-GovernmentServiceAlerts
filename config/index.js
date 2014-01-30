@@ -1,4 +1,4 @@
-git statusvar config = {
+var config = {
 	local : {
 		mode: 'local',
 		port: 8885,
