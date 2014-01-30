@@ -1,4 +1,4 @@
-var config = {
+git statusvar config = {
 	local : {
 		mode: 'local',
 		port: 8885,
@@ -20,9 +20,7 @@ var config = {
 		port: 8885,
 		mongo: {
 			host: 'troup.mongohq.com',
-			port: 10046 ,
-			user: 'scott',
-			pass: 'tiger'
+			port: 10046 
 		}
 	}
 };
