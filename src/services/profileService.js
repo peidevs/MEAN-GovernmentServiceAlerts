@@ -16,9 +16,7 @@ var app = exports = module.exports = {};
 app.isUsernameAlreadyRegistered = function(username) {
 	var user = profileRepository.getProfileByName(username);
 
-	console.log(user);
 	var result = (user && user.length > 0);
-	console.log(result);
 	return result;
 };
 

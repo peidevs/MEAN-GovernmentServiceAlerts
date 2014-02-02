@@ -1,13 +1,13 @@
 var rewire = require('rewire');
-var sut = require('../src/services/profileService');
+var sut = rewire('../src/services/profileService'); /* Call rewire instead of require so we can manipulate the object*/ 
 
 describe("is Username Already Registered", function() {
 	var mockRepository;
 
 	beforeEach(function() {
-		mockRepository = rewire('../src/repository/profileRepository');
-		mockRepository.__set__("profileRepository", {
+		sut.__set__("profileRepository", { /* will change the variable profileRepository so we can mock it out */
 			getProfileByName: function(username) {
+				console.log("mock repository called");
 				var users = [{ username : "fred" }, { username : "anne" }];
 				
 				var result = users.filter(function (user){ 
@@ -35,10 +35,4 @@ describe("is Username Already Registered", function() {
 		var result = sut.isUsernameAlreadyRegistered("david");
 		expect(result).toBe(false);
 	});
-
-	it("Returns True when Username found case Insensitive", function() {
-		var result = sut.isUsernameAlreadyRegistered("Fred");
-		expect(result).toBe(true);
-	});
-
 });
