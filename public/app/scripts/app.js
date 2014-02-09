@@ -18,7 +18,12 @@ angular.module('govServeApp', [
       })
       .when('/profile', {
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        resolve: {
+          userProfile: function (UserProfileLoader) {
+            return UserProfileLoader();
+          }
+        }
       })
       .when('/register', {
         templateUrl: 'views/register.html',
