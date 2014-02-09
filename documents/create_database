@@ -6,9 +6,9 @@ $ sudo mongod --dbpath /local_path/MEAN-GovernmentServiceAlerts/data
 
 Run locally: 
 $ mongo
-> use user
+> use profile
 
-> db.user.insert(
+> db.profile.insert(
    { 
     username : "fred", 
     email : "fred@pei.sympatico.ca", 
@@ -28,7 +28,7 @@ $ mongo
 
 
 
-> moreusers = [
+> moreprofiles = [
             { 
             username : "anne", 
             email : "anne@pei.sympatico.ca", 
@@ -57,11 +57,11 @@ $ mongo
             },            
 ]
 
-> db.user.insert(moreusers);
-> db.user.find().pretty();
+> db.profile.insert(moreprofiles);
+> db.profile.find().pretty();
 
  ----------------------------------------------------
-  Content of Users 
+  Content of Profiles
   ---------------------------------------------------- 
 {
   "_id" : ObjectId("52e6f64162e3e7da27d2985e"),
