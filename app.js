@@ -5,9 +5,21 @@
 var express = require('express')
   , config = require('./config')()
   , http = require('http')
-  , MongoClient = require('mongodb').MongoClient;
+  , MongoClient = require('mongodb').MongoClient
+  , routes = require('./routes')
+  , user = require('./routes/user')
+  , path = require('path');
+  
+// See contactprofiles.js for db connection information
+var ContactProfile = require('./contactprofile').ContactProfile;
 
+// Instantiate express and assign our app variable
 var app = express();
+
+/* Serve static files */
+app.use(require('stylus').middleware(path.join(__dirname, 'public/dist')));
+app.use(express.static(path.join(__dirname, 'public/dist')));
+
 
 /* Ensure connections available for mongdb and express server */
 /* We are just attaching here. No logon required... */
