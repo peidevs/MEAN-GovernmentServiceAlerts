@@ -21,7 +21,7 @@ angular.module('govServeApp', [
         controller: 'ProfileCtrl',
         resolve: {
           userProfile: function (UserProfileLoader) {
-            return UserProfileLoader();
+            return new UserProfileLoader();
           }
         }
       })
