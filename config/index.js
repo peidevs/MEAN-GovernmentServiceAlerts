@@ -20,7 +20,7 @@ var config = {
 		port: 8885,
 		mongo: {
 			host: 'troup.mongohq.com',
-			port: 10046 
+			port: 10046   
 		}
 	}
 };

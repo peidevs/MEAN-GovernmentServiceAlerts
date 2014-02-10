@@ -7,7 +7,6 @@ var express = require('express')
   , http = require('http')
   , MongoClient = require('mongodb').MongoClient
   , routes = require('./routes')
-  , user = require('./routes/user')
   , path = require('path');
   
 // See contactprofiles.js for db connection information
@@ -20,10 +19,19 @@ var app = express();
 app.use(require('stylus').middleware(path.join(__dirname, 'public/dist')));
 app.use(express.static(path.join(__dirname, 'public/dist')));
 
+/* Routes */
+app.get('/subscriber', routes.displayAllProfiles);
+app.get('/subscriber/:id', routes.displayProfile);
+app.get('/subscriber/:id/edit', routes.profileEdit);
+
+
 
 /* Ensure connections available for mongdb and express server */
 /* We are just attaching here. No logon required... */
-MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/services', function(err, db) {
+MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/user', function(err, db) {
+// mongodb://<user>:<password>@troup.mongohq.com:10046/user
+// MongoClient.connect("mongodb://scott:tiger@troup.mongohq.com:10046/user", function(err, db) {
+
   if(err) {
     console.log('Sorry, there is no mongo db server running.');
   } else {
