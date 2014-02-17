@@ -1,4 +1,26 @@
-var config = {
+/**
+ * NOTE: whitespace added for readability
+ *
+ * EXAMPLE OPTIONS:
+ * var options = {
+ *     host: 'troup.mongohq.com',
+ *     port: 10046,
+ *     db: 'user',
+ *     username: 'scott',
+ *     password: 'tiger'
+ * };
+ *
+ **/
+
+  var options = {
+      host: 'troup.mongohq.com',
+      port: 10046,
+      db: 'user',
+      username: 'scott',
+      password: 'tiger'
+  };
+
+  var config = {
 	local : {
 		mode: 'local',
 		port: 8885,
@@ -19,8 +41,11 @@ var config = {
 		mode: 'remoteDB',
 		port: 8885,
 		mongo: {
-			host: 'troup.mongohq.com',
-			port: 10046   
+            host: 'troup.mongohq.com',
+            port: 10046,
+            db: 'user',
+            username: 'scott',
+            password: 'tiger' 
 		}
 	}
 };

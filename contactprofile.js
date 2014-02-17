@@ -4,13 +4,59 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
+  var options = {
+      host: 'troup.mongohq.com',
+      port: '10046',
+      db: 'user',
+      username: 'scott',
+      password: 'tiger'
+  };
 
+ContactProfile = function(options) {
+
+    //store this for later use
+    var _parent = this;
+
+    //connect to the db
+    this.db = new Db(
+        'user', 
+        new Server(
+            'troup.mongohq.com', 
+            10046, 
+          {auto_reconnect: true}, 
+          {}
+        )
+    );
+
+    //open the db connection and then authenticate
+    this.db.open(function(err) {
+        _parent.db.authenticate(
+          'scott', 
+          'tiger', 
+          function(err) {
+                if (err) {
+                   console.log(err);
+                }
+            }
+        );
+    });
+
+};
+
+
+
+
+
+
+
+/* 
 
 ContactProfile = function(host, port) {
   this.db= new Db('user', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
   this.db.open(function(){});
 };
 
+*/
 
 ContactProfile.prototype.getCollection= function(callback) {
   this.db.collection('profile', function(error, profile_collection) {
