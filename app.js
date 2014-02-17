@@ -28,10 +28,8 @@ app.get('/subscriber/:id/edit', routes.profileEdit);
 
 /* Ensure connections available for mongdb and express server */
 /* We are just attaching here. No logon required... */
-// MongoClient.connect('mongodb://' + config.mongo.username + ':' + config.mongo.password + '@' +  config.mongo.host + ':' + config.mongo.port + config.mongo.db, function(err, db) {
-// MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/user', function(err, db) {
-// mongodb://<user>:<password>@troup.mongohq.com:10046/user
-MongoClient.connect("mongodb://scott:tiger@troup.mongohq.com:10046/user", function(err, db) {
+//MongoClient.connect('mongodb://' + config.mongo.username + ':' + config.mongo.password + '@' +  config.mongo.host + ':' + config.mongo.port + config.mongo.db, function(err, db) {
+MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/user', function(err, db) {
 
   if(err) {
     console.log('Sorry, there is no mongo db server running.');

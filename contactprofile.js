@@ -4,13 +4,7 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-  var options = {
-      host: 'troup.mongohq.com',
-      port: '10046',
-      db: 'user',
-      username: 'scott',
-      password: 'tiger'
-  };
+var config = require('./config')()
 
 ContactProfile = function(options) {
 
@@ -19,10 +13,10 @@ ContactProfile = function(options) {
 
     //connect to the db
     this.db = new Db(
-        'user', 
+        config.mongo.db, 
         new Server(
-            'troup.mongohq.com', 
-            10046, 
+            config.mongo.host, 
+            config.mongo.port, 
           {auto_reconnect: true}, 
           {}
         )
@@ -31,8 +25,8 @@ ContactProfile = function(options) {
     //open the db connection and then authenticate
     this.db.open(function(err) {
         _parent.db.authenticate(
-          'scott', 
-          'tiger', 
+          config.mongo.username, 
+          config.mongo.password, 
           function(err) {
                 if (err) {
                    console.log(err);
@@ -44,15 +38,10 @@ ContactProfile = function(options) {
 };
 
 
-
-
-
-
-
 /* 
 
 ContactProfile = function(host, port) {
-  this.db= new Db('user', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
+  this.db= new Db('user', new Server(config.mongo.host, config.mongo.port, {safe: false}, {auto_reconnect: true}, {}));
   this.db.open(function(){});
 };
 
