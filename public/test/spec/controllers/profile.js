@@ -34,4 +34,8 @@ describe('Controller: ProfileCtrl', function () {
   it('should attach a remove function to the scope', function () {
     expect(scope.remove).not.toBeNull();
   });
+
+  it('should attach a userProfile to the scope', function () {
+    expect(scope.userProfile).not.toBeNull();
+  });
 });
