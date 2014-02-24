@@ -19,19 +19,19 @@ describe('Controller: ProfileCtrl', function () {
     });
   }));
 
-  it('should attach a view method to the scope', function () {
+  it('should attach a view function to the scope', function () {
     expect(scope.view).not.toBeNull();
   });
 
-  it('should attach a edit method to the scope', function () {
+  it('should attach a edit function to the scope', function () {
     expect(scope.edit).not.toBeNull();
   });
 
-  it('should attach a save method to the scope', function () {
+  it('should attach a save function to the scope', function () {
     expect(scope.save).not.toBeNull();
   });
 
-  it('should attach a remove method to the scope', function () {
+  it('should attach a remove function to the scope', function () {
     expect(scope.remove).not.toBeNull();
   });
 });
