@@ -1,6 +1,27 @@
 'use strict';
 
 angular.module('govServeApp')
-  .controller('ProfileCtrl', ['$scope', 'userProfile', function ($scope, userProfile) {
-    $scope.userProfile = userProfile;
-  }]);
+  .controller('ProfileCtrl', ['$scope', '$location', 'userProfile',
+    function ($scope, $location, userProfile) {
+      $scope.userProfile = userProfile;
+
+      $scope.view = function() {
+          $location.path('/view/' + userProfile._id);
+        };
+
+      $scope.edit = function() {
+          $location.path('/edit/' + userProfile._id);
+        };
+
+      $scope.save = function() {
+          $scope.userProfile.$save(function(userProfile) {
+              $location.path('/view/' + userProfile._id);
+            });
+        };
+
+      $scope.remove = function() {
+          $scope.userProfile.$remove(function() {
+              $location.path('/');
+            });
+        };
+    }]);

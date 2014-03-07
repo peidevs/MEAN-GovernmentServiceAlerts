@@ -6,17 +6,32 @@ describe('Controller: ProfileCtrl', function () {
   beforeEach(module('govServeApp'));
 
   var ProfileCtrl,
-    scope;
+    scope, mockUserProfile;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $location) {
     scope = $rootScope.$new();
+    mockUserProfile = {username: 'userName', email: 'email@test.com'};
     ProfileCtrl = $controller('ProfileCtrl', {
-      $scope: scope
+      $scope: scope,
+      $location: $location,
+      userProfile: mockUserProfile
     });
   }));
 
-  // it('should attach a userProfile to the scope', function () {
-  //   expect(scope.userProfile).toExist();
-  // });
+  it('should attach a view method to the scope', function () {
+    expect(scope.view).not.toBeNull();
+  });
+
+  it('should attach a edit method to the scope', function () {
+    expect(scope.edit).not.toBeNull();
+  });
+
+  it('should attach a save method to the scope', function () {
+    expect(scope.save).not.toBeNull();
+  });
+
+  it('should attach a remove method to the scope', function () {
+    expect(scope.remove).not.toBeNull();
+  });
 });
