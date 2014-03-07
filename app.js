@@ -15,15 +15,19 @@ var ContactProfile = require('./contactprofile').ContactProfile;
 // Instantiate express and assign our app variable
 var app = express();
 
+
 /* Serve static files */
 app.use(require('stylus').middleware(path.join(__dirname, 'public/dist')));
 app.use(express.static(path.join(__dirname, 'public/dist')));
 
 /* Routes */
-app.get('/subscriber', routes.displayAllProfiles);
-app.get('/subscriber/:id', routes.displayProfile);
-app.get('/subscriber/:id/edit', routes.profileEdit);
 
+
+app.get('/profile/new', routes.profileNew);
+app.get('/profile', routes.displayAllProfiles);
+app.get('/profile/:id', routes.displayProfile);
+app.get('/profile/:id/edit', routes.profileEdit);
+app.post('/profile/:id/edit', routes.profileUpdate);
 
 
 /* Ensure connections available for mongdb and express server */
