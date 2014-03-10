@@ -37,6 +37,7 @@ MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port +
 
   if(err) {
     console.log('Sorry, there is no mongo db server running.');
+	console.log(err);
   } else {
     var attachDB = function(req, res, next) {
       req.db = db;

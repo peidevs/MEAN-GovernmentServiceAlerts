@@ -33,13 +33,9 @@ exports.profileEdit = function(req, res){
 };
 
 
+exports.profileUpdate = function(req, res){
 
-
-
-
-
-
-
+};
 
 exports.displayAllProfiles = function(req, res) {
     contactData.findAll(function(error, profiles) {
