@@ -3,7 +3,7 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-var config = require('./config')()
+var config = require('../../config')()
 
 ContactProfile = function() {
 
