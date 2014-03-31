@@ -5,23 +5,26 @@
 */
 
 var express = require('express')
-  , routes = require('./routes')
+  , profileRoutes = require('./Profile/routes')
+  , servicesRoutes = require('./Services/routes')
   , config = require('./config')()
   , DbUtility = require('./util/DbUtility');
 
+
+//This function and the next are a good candidate to move out of here.
 var setupProfileRoutes = function() {
-	app.get('/profile/new', routes.profileNew);
-	app.get('/profile', routes.displayAllProfiles);
-	app.get('/profile/:id', routes.displayProfile);
-	app.get('/profile/:id/edit', routes.profileEdit);
-	app.post('/profile/:id/edit', routes.profileUpdate);
+	app.get('/profile/new', profileRoutes.profileNew);
+	app.get('/profile', profileRoutes.displayAllProfiles);
+	app.get('/profile/:id', profileRoutes.displayProfile);
+	app.get('/profile/:id/edit', profileRoutes.profileEdit);
+	app.post('/profile/:id/edit', profileRoutes.profileUpdate);
 };
 
 var setupServiceRoutes = function(){
-	app.get('/service/garbage', routes.serviceGarbage);
-	app.get('/service/garbage/:id', routes.serviceGarbageByDistrict);
-	app.get('/service/events', routes.serviceEvents);
-	app.get('/service/streets', routes.serviceStreetClosures);
+	app.get('/service/garbage', servicesRoutes.serviceGarbage);
+	app.get('/service/garbage/:id', servicesRoutes.serviceGarbageByDistrict);
+	app.get('/service/events', servicesRoutes.serviceEvents);
+	app.get('/service/streets', servicesRoutes.serviceStreetClosures);
 };
 
 var startServer = function() {
