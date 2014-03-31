@@ -1,14 +1,7 @@
-
-'use strict';
-
-
 var ContactProfile = require('../contactprofile').ContactProfile;
-var contactData = new ContactProfile('localhost', 27017);
 
-/* exports.index = function(req, res){ // exports is like expose
-  res.render('index', { title: 'MEAN - Government Service Alerts' });
-};
-*/
+
+var contactData = new ContactProfile();
 
 exports.profileNew = function(req, res){
     res.json(profiles);
