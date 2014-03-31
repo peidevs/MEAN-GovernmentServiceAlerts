@@ -3,8 +3,6 @@
 		"jasmine-node" : "1.12.x",
         "express": "3.4.6",
         "mongodb": ">= 0.9.6-7",
-		"node-inspector": "x",
-		"rewire" : "2.0.x",
-		"stylus" : "0.42.x"
+		"rewire" : "2.0.x"
 	}
 }
