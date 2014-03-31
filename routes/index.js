@@ -1,4 +1,4 @@
-var ContactProfile = require('../contactprofile').ContactProfile;
+var ContactProfile = require('../Profile/dao/contactprofile').ContactProfile;
 
 
 var contactData = new ContactProfile();
