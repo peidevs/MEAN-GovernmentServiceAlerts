@@ -15,4 +15,4 @@ Download the required dependencies for the project. (We do not store them in the
 npm install
 node app.js (local || cloud9 || remoteDB)
 ```
-
+running the server will start the restful services.
