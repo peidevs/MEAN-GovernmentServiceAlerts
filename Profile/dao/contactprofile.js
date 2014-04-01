@@ -1,12 +1,11 @@
 var Db = require('mongodb').Db;
-var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
-var config = require('./config')()
+var config = require('../../config')()
 
-ContactProfile = function(options) {
+ContactProfile = function() {
 
     //store this for later use
     var _parent = this;
@@ -54,7 +53,7 @@ ContactProfile.prototype.getCollection= function(callback) {
   });
 };
 
-
+// find a profile by ID
 ContactProfile.prototype.findById = function(contactId, callback) {
     this.getCollection(function(error, profile_collection) {
       if( error ) callback(error)
@@ -64,6 +63,22 @@ ContactProfile.prototype.findById = function(contactId, callback) {
           else callback(null, result)
         });
       }
+    });
+};
+
+//update a profile
+ContactProfile.prototype.update = function(contactId, contacts, callback) {
+    this.getCollection(function(error, profile_collection) {
+      if( error) callback(error);
+      else {
+        profile_collection.update(
+                  {_id: profile_collection.db.bson_serializer.ObjectID.createFromHexString(contactId)},
+                            contacts,
+                            function(error, contacts) {
+                                     if(error) callback(error);
+                                     else callback(null, contacts)       
+                             });
+            }
     });
 };
 

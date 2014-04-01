@@ -1,53 +1,46 @@
 /*  Launch as:
    $ node app (local || cloud9 || remoteDB)
+*
+* Sets up all the routes that the restful service will expose
 */
 
 var express = require('express')
+  , profileRoutes = require('./Profile/routes')
+  , servicesRoutes = require('./Services/routes')
   , config = require('./config')()
-  , http = require('http')
-  , MongoClient = require('mongodb').MongoClient
-  , routes = require('./routes')
-  , path = require('path');
-  
-// See contactprofiles.js for db connection information
-var ContactProfile = require('./contactprofile').ContactProfile;
+  , DbUtility = require('./util/DbUtility');
 
-// Instantiate express and assign our app variable
+
+//This function and the next are a good candidate to move out of here.
+var setupProfileRoutes = function() {
+	app.get('/profile/new', profileRoutes.profileNew);
+	app.get('/profile', profileRoutes.displayAllProfiles);
+	app.get('/profile/:id', profileRoutes.displayProfile);
+	app.get('/profile/:id/edit', profileRoutes.profileEdit);
+	app.post('/profile/:id/edit', profileRoutes.profileUpdate);
+};
+
+var setupServiceRoutes = function(){
+	app.get('/service/garbage', servicesRoutes.serviceGarbage);
+	app.get('/service/garbage/:id', servicesRoutes.serviceGarbageByDistrict);
+	app.get('/service/events', servicesRoutes.serviceEvents);
+	app.get('/service/streets', servicesRoutes.serviceStreetClosures);
+};
+
+var startServer = function() {
+	DbUtility.isDbRunning( function() {
+		app.listen( config.port, function() {
+			console.log('Express server listening on port ' + config.port);
+		});
+	});
+};
+
 var app = express();
 
-/* Serve static files */
-app.use(require('stylus').middleware(path.join(__dirname, 'public/dist')));
-app.use(express.static(path.join(__dirname, 'public/dist')));
+setupProfileRoutes();
+setupServiceRoutes();
 
-/* Routes */
-app.get('/subscriber', routes.displayAllProfiles);
-app.get('/subscriber/:id', routes.displayProfile);
-app.get('/subscriber/:id/edit', routes.profileEdit);
-
-
-
-/* Ensure connections available for mongdb and express server */
-/* We are just attaching here. No logon required... */
-//MongoClient.connect('mongodb://' + config.mongo.username + ':' + config.mongo.password + '@' +  config.mongo.host + ':' + config.mongo.port + config.mongo.db, function(err, db) {
-MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/user', function(err, db) {
-
-  if(err) {
-    console.log('Sorry, there is no mongo db server running.');
-  } else {
-    var attachDB = function(req, res, next) {
-      req.db = db;
-      next();
-    };
-
-    http.createServer(app).listen(config.port, function() {
-        console.log(
-          'Successfully connected to mongodb://' + config.mongo.host + ':' + config.mongo.port,
-          '\nExpress server listening on port ' + config.port
-        );
-    });
-  }
-});
-
+startServer();
 
 
 

@@ -11,6 +11,8 @@ Make sure you have Node.js and Node Package Manager (npm) in a running state
 
 ##Getting Started
 Download the required dependencies for the project. (We do not store them in the repo)
-> npm install
-
-
+```
+npm install
+node app.js (local || cloud9 || remoteDB)
+```
+running the server will start the restful services.
