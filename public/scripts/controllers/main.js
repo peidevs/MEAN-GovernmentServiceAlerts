@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('govServeApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['$scope', '$location', function ($scope, $location) {
+      $scope.login = function() {
+          //Do something
+          $location.path('/login/');
+      };
+  }]);
