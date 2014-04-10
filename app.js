@@ -40,6 +40,8 @@ var app = express();
 setupProfileRoutes();
 setupServiceRoutes();
 
+app.use(express.static(__dirname + '/public'));
+
 startServer();
 
 
