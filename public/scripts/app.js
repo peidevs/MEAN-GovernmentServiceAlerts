@@ -16,7 +16,7 @@ angular.module('govServeApp', [
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/profile', {
+      .when('/profile/:userProfileId', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl',
         resolve: {

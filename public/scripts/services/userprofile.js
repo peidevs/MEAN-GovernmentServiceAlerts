@@ -3,7 +3,7 @@
 var govServeApp = angular.module('govServeApp');
 
 govServeApp.factory('UserProfile', ['$resource', function ($resource) {
-    return $resource('/userprofile/:_id', {_id: '@_id'});
+    return $resource('/profile/:_id', {_id: '@_id'});
   }]);
 
 govServeApp.factory('UserProfileLoader', ['UserProfile', '$route', '$q',

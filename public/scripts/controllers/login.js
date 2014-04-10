@@ -18,4 +18,8 @@ angular.module('govServeApp')
                 $scope.userList = data.data;
                 $scope.selectedUser = data.data[0];
             });
+
+            $scope.login = function() {
+                $location.path('/profile/' + $scope.selectedUser._id);
+            };
       }]);
