@@ -1,8 +1,6 @@
 
 <p>Hello, {{ userProfile.username }}! You're email address is {{ userProfile.email }}. We can Tweet you at {{ userProfile.twitter }}</p>
 
-<div>{{ userProfile }}</div>
-
 <section id="basicInformation">
 	<label for="username">Username</label>
 	<input type="text" id="username" ng-model="userProfile.username" />
@@ -24,16 +22,13 @@
 
 <section id="alerts">
 	<label for="garbage">Garbage</label>
-	<input type="checkbox" id="garbage" />
+	<input type="text" id="garbage" ng-model="userProfile.service.garbage" />
 
 	<label for="streetClosures">Street Closures</label>
-	<input type="checkbox" id="streetClosures" />
-
-	<label for="schoolClosures">School Closures</label>
-	<input type="checkbox" id="schoolClosures" />
+	<input type="text" id="streetClosures" ng-model="userProfile.service.street_closures" />
 
 	<label for="events">Upcoming Events</label>
-	<input type="checkbox" id="events" />
+	<input type="text" id="events" ng-model="userProfile.service.events" />
 </section>
 
 <input type="submit" />
