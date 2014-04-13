@@ -12,11 +12,11 @@ ContactProfile = function() {
 
     //connect to the db
     this.db = new Db(
-        config.mongo.db, 
+        config.mongo.db,
         new Server(
-            config.mongo.host, 
-            config.mongo.port, 
-          {auto_reconnect: true}, 
+            config.mongo.host,
+            config.mongo.port,
+          {auto_reconnect: true},
           {}
         )
     );
@@ -24,8 +24,8 @@ ContactProfile = function() {
     //open the db connection and then authenticate
     this.db.open(function(err) {
         _parent.db.authenticate(
-          config.mongo.username, 
-          config.mongo.password, 
+          config.mongo.username,
+          config.mongo.password,
           function(err) {
                 if (err) {
                    console.log(err);
@@ -37,7 +37,7 @@ ContactProfile = function() {
 };
 
 
-/* 
+/*
 
 ContactProfile = function(host, port) {
   this.db= new Db('user', new Server(config.mongo.host, config.mongo.port, {safe: false}, {auto_reconnect: true}, {}));
@@ -68,16 +68,25 @@ ContactProfile.prototype.findById = function(contactId, callback) {
 
 //update a profile
 ContactProfile.prototype.update = function(contactId, contacts, callback) {
-    this.getCollection(function(error, profile_collection) {
-      if( error) callback(error);
-      else {
+  console.log('Updating...');
+  this.getCollection(function(error, profile_collection) {
+      if (error) {
+        console.log('Error Getting collection...');
+        callback(error);
+      } else {
+        console.log('Updating... calling storage...');
         profile_collection.update(
                   {_id: profile_collection.db.bson_serializer.ObjectID.createFromHexString(contactId)},
-                            contacts,
-                            function(error, contacts) {
-                                     if(error) callback(error);
-                                     else callback(null, contacts)       
-                             });
+                  contacts,
+                  function(error, contacts) {
+                    if (error) {
+                      console.log('Error Updating...');
+                      callback(error);
+                    } else {
+                      console.log('Calling callback...');
+                      callback(null, contacts);
+                    }
+                  });
             }
     });
 };
