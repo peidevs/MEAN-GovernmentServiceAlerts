@@ -11,14 +11,8 @@ exports.displayProfile = function(req, res) {
             res.statusCode = 404;
             return res.send('Error 404: No profile found');
         }
-        res.json(profiles);   
+        res.json(profiles);
     });
-};
-
-exports.profileEdit = function(req, res){
-    contactData.findById(req.params.id, function(error, profiles) {
-        res.json(profiles); // Need to break this out into actual fields for edit
-        });
 };
 
 exports.profileUpdate = function(req, res){

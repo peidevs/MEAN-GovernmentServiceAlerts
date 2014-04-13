@@ -16,8 +16,7 @@ var setupProfileRoutes = function() {
 	app.get('/profile/new', profileRoutes.profileNew);
 	app.get('/profile', profileRoutes.displayAllProfiles);
 	app.get('/profile/:id', profileRoutes.displayProfile);
-	app.get('/profile/:id/edit', profileRoutes.profileEdit);
-	app.post('/profile/:id/edit', profileRoutes.profileUpdate);
+	app.post('/profile/:id', profileRoutes.profileUpdate);
 };
 
 var setupServiceRoutes = function(){
