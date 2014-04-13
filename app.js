@@ -36,6 +36,10 @@ var startServer = function() {
 
 var app = express();
 
+
+// IMPORTANT: set before any routes you'll need "req.body" for.
+app.use(express.bodyParser());
+
 setupProfileRoutes();
 setupServiceRoutes();
 

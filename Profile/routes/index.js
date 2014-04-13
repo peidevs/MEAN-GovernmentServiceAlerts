@@ -15,8 +15,15 @@ exports.displayProfile = function(req, res) {
     });
 };
 
-exports.profileUpdate = function(req, res){
+exports.profileUpdate = function(req, res) {
+    contactData.update(req.params.id, req.body, function(error, profile) {
+        if (error) {
+            res.statusCode = 500;
+            return res.send('Error saving profile');
+        }
 
+        res.json(profile);
+    });
 };
 
 exports.displayAllProfiles = function(req, res) {

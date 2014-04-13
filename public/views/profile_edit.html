@@ -3,32 +3,32 @@
 
 <section id="basicInformation">
 	<label for="username">Username</label>
-	<input type="text" id="username" ng-model="userProfile.username" />
+	<input type="text" name="username" ng-model="userProfile.username" />
 
 	<label for="district">District</label>
-	<input type="text" id="district" ng-model="userProfile.address.district" />
+	<input type="text" name="district" ng-model="userProfile.address.district" />
 
 	<label for="province">Province</label>
-	<input type="text" id="province" ng-model="userProfile.address.province" />
+	<input type="text" name="province" ng-model="userProfile.address.province" />
 </section>
 
 <section id="contactInformation">
 	<label for="twitter">Twitter Handle @</label>
-	<input type="text" id="twitter" ng-model="userProfile.twitter" />
+	<input type="text" name="twitter" ng-model="userProfile.twitter" />
 
 	<label for="email">Email Adderss</label>
-	<input type="email" id="email" ng-model="userProfile.email" />
+	<input type="email" name="email" ng-model="userProfile.email" />
 </section>
 
 <section id="alerts">
 	<label for="garbage">Garbage</label>
-	<input type="text" id="garbage" ng-model="userProfile.service.garbage" />
+	<input type="text" name="garbage" ng-model="userProfile.service.garbage" />
 
 	<label for="streetClosures">Street Closures</label>
-	<input type="text" id="streetClosures" ng-model="userProfile.service.street_closures" />
+	<input type="text" name="streetClosures" ng-model="userProfile.service.street_closures" />
 
 	<label for="events">Upcoming Events</label>
-	<input type="text" id="events" ng-model="userProfile.service.events" />
+	<input type="text" name="events" ng-model="userProfile.service.events" />
 </section>
 
 <button ng-click="save()">Save</button>
