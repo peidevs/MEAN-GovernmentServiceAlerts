@@ -16,8 +16,6 @@ exports.displayProfile = function(req, res) {
 };
 
 exports.profileUpdate = function(req, res) {
-    console.log(req.params.id);
-    console.log(req.body);
     var item = {
         username: req.body.username,
         email: req.body.email,

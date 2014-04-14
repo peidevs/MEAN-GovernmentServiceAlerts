@@ -68,22 +68,17 @@ ContactProfile.prototype.findById = function(contactId, callback) {
 
 //update a profile
 ContactProfile.prototype.update = function(contactId, contacts, callback) {
-  console.log('Updating...');
   this.getCollection(function(error, profile_collection) {
       if (error) {
-        console.log('Error Getting collection...');
         callback(error);
       } else {
-        console.log('Updating... calling storage...');
         profile_collection.update(
                   {_id: profile_collection.db.bson_serializer.ObjectID.createFromHexString(contactId)},
                   contacts,
                   function(error, contacts) {
                     if (error) {
-                      console.log('Error Updating...');
                       callback(error);
                     } else {
-                      console.log('Calling callback...');
                       callback(null, contacts);
                     }
                   });
