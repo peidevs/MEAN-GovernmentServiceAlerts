@@ -10,15 +10,7 @@ var express = require('express')
   , config = require('./config')()
   , DbUtility = require('./util/DbUtility');
 
-
-//This function and the next are a good candidate to move out of here.
-var setupProfileRoutes = function() {
-	app.get('/profile/new', profileRoutes.profileNew);
-	app.get('/profile', profileRoutes.displayAllProfiles);
-	app.get('/profile/:id', profileRoutes.displayProfile);
-	app.post('/profile/:id', profileRoutes.profileUpdate);
-};
-
+//This function is a good candidate to move out of here.
 var setupServiceRoutes = function(){
 	app.get('/service/garbage', servicesRoutes.serviceGarbage);
 	app.get('/service/garbage/:id', servicesRoutes.serviceGarbageByDistrict);
@@ -40,7 +32,7 @@ var app = express();
 // IMPORTANT: set before any routes you'll need "req.body" for.
 app.use(express.bodyParser());
 
-setupProfileRoutes();
+profileRoutes.setUp(app, '/profile');
 setupServiceRoutes();
 
 app.use(express.static(__dirname + '/public'));

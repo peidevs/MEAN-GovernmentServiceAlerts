@@ -1,11 +1,11 @@
 var ContactProfile = require('../dao/contactprofile').ContactProfile;
 var contactData = new ContactProfile();
 
-exports.profileNew = function(req, res){
+var profileNew = function(req, res){
     res.json(profiles);
 };
 
-exports.displayProfile = function(req, res) {
+var displayProfile = function(req, res) {
     contactData.findById(req.params.id, function(error, profiles) {
         if (error) {
             res.statusCode = 404;
@@ -15,7 +15,7 @@ exports.displayProfile = function(req, res) {
     });
 };
 
-exports.profileUpdate = function(req, res) {
+var profileUpdate = function(req, res) {
     var item = {
         username: req.body.username,
         email: req.body.email,
@@ -40,8 +40,19 @@ exports.profileUpdate = function(req, res) {
     });
 };
 
-exports.displayAllProfiles = function(req, res) {
+var displayAllProfiles = function(req, res) {
     contactData.findAll(function(error, profiles) {
         res.json(profiles);
     });
 };
+
+exports.setUp = function(app, baseUrl) {
+    var singleItemUrl = baseUrl + '/:id';
+
+    app.get(baseUrl, displayAllProfiles);
+    app.post(baseUrl, profileNew);
+
+    app.get(singleItemUrl, displayProfile);
+    app.post(singleItemUrl, profileUpdate);
+};
+
