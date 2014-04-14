@@ -16,7 +16,23 @@ exports.displayProfile = function(req, res) {
 };
 
 exports.profileUpdate = function(req, res) {
-    contactData.update(req.params.id, req.body, function(error, profile) {
+    console.log(req.params.id);
+    console.log(req.body);
+    var item = {
+        username: req.body.username,
+        email: req.body.email,
+        twitter: req.body.twitter,
+        address: {
+            district: req.body.address.district,
+            province: req.body.address.province
+        },
+        service: {
+            garbage: req.body.service.garbage,
+            street_closures: req.body.service.street_closures,
+            events: req.body.service.events
+        }
+    };
+    contactData.update(req.params.id, item, function(error, profile) {
         if (error) {
             res.statusCode = 500;
             return res.send('Error saving profile');
