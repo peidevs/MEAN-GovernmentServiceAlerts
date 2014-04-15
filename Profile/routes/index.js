@@ -1,8 +1,34 @@
 var ContactProfile = require('../dao/contactprofile').ContactProfile;
 var contactData = new ContactProfile();
 
-var profileNew = function(req, res){
-    res.json(profiles);
+var makeProfileFromPayload = function(body) {
+    return {
+        username: body.username,
+        email: body.email,
+        twitter: body.twitter,
+        address: {
+            district: body.address.district,
+            province: body.address.province
+        },
+        service: {
+            garbage: body.service.garbage,
+            street_closures: body.service.street_closures,
+            events: body.service.events
+        }
+    };
+};
+
+var profileNew = function(req, res) {
+    var item = makeProfileFromPayload(req.body);
+
+    contactData.save(item, function(error, profile) {
+        if (error) {
+            res.statusCode = 500;
+            return res.send('Error saving new profile');
+        } else {
+            res.json(profile);
+        }
+    });
 };
 
 var displayProfile = function(req, res) {
@@ -16,20 +42,7 @@ var displayProfile = function(req, res) {
 };
 
 var profileUpdate = function(req, res) {
-    var item = {
-        username: req.body.username,
-        email: req.body.email,
-        twitter: req.body.twitter,
-        address: {
-            district: req.body.address.district,
-            province: req.body.address.province
-        },
-        service: {
-            garbage: req.body.service.garbage,
-            street_closures: req.body.service.street_closures,
-            events: req.body.service.events
-        }
-    };
+    var item = makeProfileFromPayload(req.body); 
     contactData.update(req.params.id, item, function(error, profile) {
         if (error) {
             res.statusCode = 500;

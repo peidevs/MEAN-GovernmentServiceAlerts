@@ -86,7 +86,23 @@ ContactProfile.prototype.update = function(contactId, contacts, callback) {
     });
 };
 
+// Save a new profile
+ContactProfile.prototype.save = function(profiles, callback) {
+    this.getCollection(function(error, profile_collection) {
+        if (error) {
+            callback(error);
+        } else {
+            // If profiles is not an array, make it one
+            if (typeof(profiles.length) == "undefined") {
+                profiles = [profiles];
+            }
 
+            profile_collection.insert(profiles, function() {
+                callback(null, profiles);
+            });
+        }
+    });
+};
 
 //find all profiles
 ContactProfile.prototype.findAll = function(callback) {
