@@ -5,4 +5,8 @@ angular.module('govServeApp')
       $scope.login = function() {
           $location.path('/login/');
       };
+
+      $scope.register = function() {
+          $location.path('/register/');
+      };
   }]);

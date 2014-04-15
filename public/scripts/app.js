@@ -26,7 +26,7 @@ angular.module('govServeApp', [
         }
       })
       .when('/profile/:userProfileId/edit', {
-        templateUrl: 'views/profile_edit.html',
+        templateUrl: 'views/profile_form.html',
         controller: 'ProfileCtrl',
         resolve: {
           userProfile: function (UserProfileLoader) {
@@ -35,7 +35,7 @@ angular.module('govServeApp', [
         }
       })
       .when('/register', {
-        templateUrl: 'views/register.html',
+        templateUrl: 'views/profile_form.html',
         controller: 'RegisterCtrl'
       })
       .otherwise({
