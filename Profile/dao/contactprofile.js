@@ -87,18 +87,13 @@ ContactProfile.prototype.update = function(contactId, contacts, callback) {
 };
 
 // Save a new profile
-ContactProfile.prototype.save = function(profiles, callback) {
+ContactProfile.prototype.save = function(profile, callback) {
     this.getCollection(function(error, profile_collection) {
         if (error) {
             callback(error);
         } else {
-            // If profiles is not an array, make it one
-            if (typeof(profiles.length) == "undefined") {
-                profiles = [profiles];
-            }
-
-            profile_collection.insert(profiles, function() {
-                callback(null, profiles);
+            profile_collection.insert(profile, function() {
+                callback(null, profile);
             });
         }
     });
